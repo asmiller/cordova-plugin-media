@@ -32,6 +32,37 @@
 
 @synthesize soundCache, avSession;
 
+- (void) pluginInitialize
+{
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+}
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)theEvent
+{
+  if (theEvent.type == UIEventTypeRemoteControl)
+  {
+
+    switch(theEvent.subtype) {
+      case UIEventSubtypeRemoteControlTogglePlayPause:
+        //Insert code
+          case UIEventSubtypeRemoteControlPlay:
+              //Insert code
+              break;
+          case UIEventSubtypeRemoteControlPause:
+              // Insert code
+              break;
+          case UIEventSubtypeRemoteControlStop:
+              //Insert code.
+              break;
+          default:
+              return;
+    }
+
+    NSString *jsString = [NSString stringWithFormat:@"%@(\"%@\",%d);", @"cordova.require('org.apache.cordova.media.Media').onStatus", "controls", theEvent.subtype];
+    [self.commandDelegate evalJs:jsString];
+  }
+}
+
 - (NSURL*)urlForResource:(NSString*)resourcePath
 {
     NSURL* resourceURL = nil;
@@ -706,6 +737,7 @@
 - (void)dealloc
 {
     [[self soundCache] removeAllObjects];
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
 }
 
 - (void)onReset
