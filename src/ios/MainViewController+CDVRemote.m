@@ -39,7 +39,7 @@
 {
   if (theEvent.type == UIEventTypeRemoteControl)
   {
-    NSString *jsString = [NSString stringWithFormat:@"%@(\"%@\",%d);", @"cordova.require('org.apache.cordova.media.Media').onStatus", "controls", theEvent.subtype];
+    NSString *jsString = [NSString stringWithFormat:@"%@(\"%@\",%d);", @"cordova.require('org.apache.cordova.media.Media').onStatus", @"controls", theEvent.subtype];
     [self.commandDelegate evalJs:jsString];
   }
 }
