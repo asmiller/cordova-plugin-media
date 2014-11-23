@@ -19,9 +19,9 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-xmlns:android="http://schemas.android.com/apk/res/android"
-id="org.apache.cordova.media"
-    version="0.2.15-dev">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="org.apache.cordova.media"
+        version="0.2.15-dev">
 
     <name>Media</name>
     <description>Cordova Media Plugin</description>
@@ -29,84 +29,86 @@ id="org.apache.cordova.media"
     <keywords>cordova,media</keywords>
     <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-media.git</repo>
     <issue>https://issues.apache.org/jira/browse/CB/component/12320647</issue>
-    
-    <dependency id="org.apache.cordova.file" version=">=1.0.1" />
+
+    <dependency id="org.apache.cordova.file" version=">=1.0.1"/>
 
     <js-module src="www/MediaError.js" name="MediaError">
-        <clobbers target="window.MediaError" />
+        <clobbers target="window.MediaError"/>
     </js-module>
-    
+
     <js-module src="www/Media.js" name="Media">
-        <clobbers target="window.Media" />
+        <clobbers target="window.Media"/>
     </js-module>
-    
+
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Media" >
+            <feature name="Media">
                 <param name="android-package" value="org.apache.cordova.media.AudioHandler"/>
             </feature>
         </config-file>
-        
+
         <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.RECORD_AUDIO" />
-            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
         </config-file>
-        
-        <source-file src="src/android/AudioHandler.java" target-dir="src/org/apache/cordova/media" />
-        <source-file src="src/android/AudioPlayer.java" target-dir="src/org/apache/cordova/media" />
-        <source-file src="src/android/FileHelper.java" target-dir="src/org/apache/cordova/media" />
-     </platform>
-     
-     <!-- amazon-fireos -->
+
+        <source-file src="src/android/AudioHandler.java" target-dir="src/org/apache/cordova/media"/>
+        <source-file src="src/android/AudioPlayer.java" target-dir="src/org/apache/cordova/media"/>
+        <source-file src="src/android/FileHelper.java" target-dir="src/org/apache/cordova/media"/>
+    </platform>
+
+    <!-- amazon-fireos -->
     <platform name="amazon-fireos">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Media" >
+            <feature name="Media">
                 <param name="android-package" value="org.apache.cordova.media.AudioHandler"/>
             </feature>
         </config-file>
-        
+
         <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.RECORD_AUDIO" />
-            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
         </config-file>
-        
-        <source-file src="src/android/AudioHandler.java" target-dir="src/org/apache/cordova/media" />
-        <source-file src="src/android/AudioPlayer.java" target-dir="src/org/apache/cordova/media" />
-        <source-file src="src/android/FileHelper.java" target-dir="src/org/apache/cordova/media" />
-     </platform>
+
+        <source-file src="src/android/AudioHandler.java" target-dir="src/org/apache/cordova/media"/>
+        <source-file src="src/android/AudioPlayer.java" target-dir="src/org/apache/cordova/media"/>
+        <source-file src="src/android/FileHelper.java" target-dir="src/org/apache/cordova/media"/>
+    </platform>
 
 
-     <!-- ubuntu -->
-     <platform name="ubuntu">
-         <config-file target="config.xml" parent="/*">
-             <feature name="Media">
-                 <param policy_group="microphone" policy_version="1" />
-                 <param policy_group="video" policy_version="1" />
-             </feature>
-         </config-file>
-         <header-file src="src/ubuntu/media.h" />
-         <source-file src="src/ubuntu/media.cpp" />
-     </platform>
+    <!-- ubuntu -->
+    <platform name="ubuntu">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Media">
+                <param policy_group="microphone" policy_version="1"/>
+                <param policy_group="video" policy_version="1"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ubuntu/media.h"/>
+        <source-file src="src/ubuntu/media.cpp"/>
+    </platform>
 
-     <!-- ios -->
-     <platform name="ios">    
-         <config-file target="config.xml" parent="/*">
-             <feature name="Media">
-                 <param name="ios-package" value="CDVSound" /> 
-             </feature>
-         </config-file>
-         <header-file src="src/ios/CDVSound.h" />
-         <source-file src="src/ios/CDVSound.m" />
-     </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Media">
+                <param name="ios-package" value="CDVSound"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/CDVSound.h"/>
+        <source-file src="src/ios/CDVSound.m"/>
+        <header-file src="src/ios/MainViewController+CDVRemote.h"/>
+        <source-file src="src/ios/MainViewController+CDVRemote.m"/>
+    </platform>
 
     <!-- blackberry10 -->
     <platform name="blackberry10">
-        <source-file src="src/blackberry10/index.js" target-dir="Media" />
+        <source-file src="src/blackberry10/index.js" target-dir="Media"/>
         <config-file target="www/config.xml" parent="/widget">
             <feature name="Media" value="Media"/>
         </config-file>
@@ -125,8 +127,8 @@ id="org.apache.cordova.media"
             <Capability Name="ID_CAP_MICROPHONE"/>
         </config-file>
 
-        <source-file src="src/wp/Media.cs" />
-        <source-file src="src/wp/AudioPlayer.cs" />
+        <source-file src="src/wp/Media.cs"/>
+        <source-file src="src/wp/AudioPlayer.cs"/>
     </platform>
 
     <!-- wp8 -->
@@ -143,19 +145,19 @@ id="org.apache.cordova.media"
             <Capability Name="ID_CAP_MICROPHONE"/>
         </config-file>
 
-        <source-file src="src/wp/Media.cs" />
-        <source-file src="src/wp/AudioPlayer.cs" />
+        <source-file src="src/wp/Media.cs"/>
+        <source-file src="src/wp/AudioPlayer.cs"/>
     </platform>
 
     <!-- windows8 -->
     <platform name="windows8">
         <js-module src="src/windows8/MediaProxy.js" name="MediaProxy">
-            <merges target="" />
+            <merges target=""/>
         </js-module>
 
         <config-file target="package.appxmanifest" parent="/Package/Capabilities">
-            <Capability Name="musicLibrary" />
-            <DeviceCapability Name="microphone" />
+            <Capability Name="musicLibrary"/>
+            <DeviceCapability Name="microphone"/>
         </config-file>
     </platform>
 
