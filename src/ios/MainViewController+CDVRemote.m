@@ -7,16 +7,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-
-    NSError *setCategoryError = nil;
-    BOOL success = [audioSession setCategory:AVAudioSessionCategoryPlayback error:&setCategoryError];
-    if (!success) { /* handle the error condition */ }
-
-    NSError *activationError = nil;
-    success = [audioSession setActive:YES error:&activationError];
-    if (!success) { /* handle the error condition */ }
-
+    NSError *setCategoryErr = nil;
+    NSError *activationErr  = nil;
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &setCategoryErr];
+    [[AVAudioSession sharedInstance] setActive: YES error: &activationErr];
 
     // Turn on remote control event delivery
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
@@ -34,6 +28,11 @@
     [self resignFirstResponder];
 
     [super viewWillDisappear:animated];
+}
+
+-(BOOL) canBecomeFirstResponder
+{
+    return YES;
 }
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)theEvent
